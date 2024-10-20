@@ -11,4 +11,8 @@ public interface BookingService {
     BookingResponse getBookingByConfirmationCode(String confirmationCode);
 
     PageResponse<BookingResponse> getAllBookings(int page, int size);
+
+    PageResponse<BookingResponse> getBookingByUserEmail(String email, int page, int size);
+
+    void cancelBooking(String id);
 }

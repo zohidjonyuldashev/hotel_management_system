@@ -43,4 +43,19 @@ public class BookingController {
         BookingResponse response = bookingService.getBookingByConfirmationCode(confirmationCode);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/user/{email}")
+    public ResponseEntity<PageResponse<BookingResponse>> getBookingByEmail(
+            @PathVariable String email,
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size) {
+        PageResponse<BookingResponse> responses = bookingService.getBookingByUserEmail(email, page, size);
+        return ResponseEntity.ok(responses);
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<Void> deleteBooking(@PathVariable String id) {
+        bookingService.cancelBooking(id);
+        return ResponseEntity.noContent().build();
+    }
 }

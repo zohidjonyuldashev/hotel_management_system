@@ -82,6 +82,29 @@ public class BookingServiceImpl implements BookingService {
         );
     }
 
+    @Override
+    public PageResponse<BookingResponse> getBookingByUserEmail(String email, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("checkInDate").descending());
+        Page<Booking> bookingPage = bookingRepository.findAll(pageable);
+        List<BookingResponse> responses = bookingRepository.findByGuestEmail(email, pageable)
+                .stream()
+                .map(this::mapToBookingResponse)
+                .toList();
+        return new PageResponse<>(
+                responses,
+                bookingPage.getNumber(),
+                bookingPage.getSize(),
+                bookingPage.getTotalElements(),
+                bookingPage.getTotalPages(),
+                bookingPage.isFirst(),
+                bookingPage.isLast());
+    }
+
+    @Override
+    public void cancelBooking(String id) {
+        bookingRepository.deleteById(id);
+    }
+
     private BookingResponse mapToBookingResponse(Booking booking) {
         RoomResponse roomResponse = roomServiceImpl.mapToRoomResponse(booking.getRoom());
         return BookingResponse.builder()

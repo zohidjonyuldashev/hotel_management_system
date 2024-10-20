@@ -1,5 +1,6 @@
 package uz.developer.zohidjon.hotel_management_system.repository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import uz.developer.zohidjon.hotel_management_system.model.Booking;
@@ -14,4 +15,6 @@ public interface BookingRepository extends JpaRepository<Booking, String> {
     Optional<Booking> findByConfirmationCode(String confirmationCode);
 
     List<Booking> findByCheckOutDateBefore(LocalDate date);
+
+    List<Booking> findByGuestEmail(String guestEmail, Pageable pageable);
 }
