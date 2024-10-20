@@ -1,0 +1,23 @@
+spring:
+  application:
+    file:
+      uploads:
+        photos-output-path: .\uploads
+  profiles:
+    active: dev
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: yuldashevzohidjon252@gmail.com
+    password: wtlpqgquptvszqik
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+  servlet:
+    multipart:
+      max-file-size: 3MB
+springdoc:
+  default-produces-media-type: application/json
