@@ -1,14 +1,14 @@
 spring:
   security:
     jwt:
-      secret-key: D84E40BAA9862B80D91816F7B26042090F56B3B87510D50A62D60EB0F3CE01F1
+      secret-key: your-secret-key
       expiration: 600000 # 10 min
       refresh-token:
         expiration: 604800000 # 7 days
   datasource:
     url: jdbc:postgresql://localhost:5432/hms_db
-    username: postgres
-    password: 1234
+    username: username
+    password: password
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
