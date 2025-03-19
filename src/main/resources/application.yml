@@ -6,10 +6,10 @@ spring:
   profiles:
     active: dev
   mail:
-    host: smtp.gmail.com
-    port: 465
-    username: yuldashevzohidjon252@gmail.com
-    password: wtlpqgquptvszqik
+    host: host
+    port: port
+    username: username
+    password: password
     properties:
       mail:
         smtp:
